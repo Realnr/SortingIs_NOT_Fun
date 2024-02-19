@@ -2,27 +2,35 @@ package WorkHere;
 
 public class Sortieren {
 
+    public static int quickVertausche = 0;
+    public static int quickVergleiche = 0;
+
     public static void main(String[] args) {
-        int[] array=new int[20];
+        int[] array=new int[4000];
+
         Help.generateArray(array);//Array mit Zufallszahlen füllen
-        Help.print(array);                      //Array in der Konsole ausgeben lassen
+        Help.print(array);
+
+        //Array in der Konsole ausgeben lassen
+
+
 
         for (int i = 0; i < 10; i++) {
-            bubbleSort(array);
-            Help.print(array);                      //Array in der Konsole ausgeben lassen
+            bubbleSort(array);//Array in der Konsole ausgeben lassen
             Help.generateArray(array);              //Array mit Zufallszahlen füllen
         }
         for (int i = 0; i < 10; i++) {
-            insertionSort(array);
-            Help.print(array);                      //Array in der Konsole ausgeben lassen
+            selectionSort(array);//Array in der Konsole ausgeben lassen
             Help.generateArray(array);              //Array mit Zufallszahlen füllen
         }
         for (int i = 0; i < 10; i++) {
-            selectionSort(array);
-            Help.print(array);                      //Array in der Konsole ausgeben lassen
+            quickVertausche = 0;
+            quickVergleiche = 0;
+            System.out.println("quickSort");
+            quickSort(array,0, array.length-1);//Array in der Konsole ausgeben lassen
+            System.out.println((quickVergleiche+quickVertausche));
             Help.generateArray(array);              //Array mit Zufallszahlen füllen
         }
-        Help.print(array);
     }
 
     public static void insertionSort(int[] array){
@@ -39,8 +47,7 @@ public class Sortieren {
             }
             vergleichsAnzahl++;
         }
-        System.out.println("vergleichsAnzahl: " + vergleichsAnzahl);
-        System.out.println("vertauschungsAnzahl: " + vertauschungsAnzahl);
+        System.out.println("AAAAAAAA: " + (vergleichsAnzahl + vertauschungsAnzahl));
     }
 
     public static void selectionSort(int[] array){
@@ -58,8 +65,7 @@ public class Sortieren {
             Help.swap(array,i,min);
             vertauschungsAnzahl++;
         }
-        System.out.println("vergleichsAnzahl: " + vergleichsAnzahl);
-        System.out.println("vertauschungsAnzahl: " + vertauschungsAnzahl);
+        System.out.println("AAAAAAAA: " + (vergleichsAnzahl + vertauschungsAnzahl));
     }
 
     public static void bubbleSort(int[] array){
@@ -75,9 +81,42 @@ public class Sortieren {
                 vergleichsAnzahl++;
             }
         }
-        System.out.println("vergleichsAnzahl: " + vergleichsAnzahl);
-        System.out.println("vertauschungsAnzahl: " + vertauschungsAnzahl);
+        System.out.println("AAAAAAAA: " + (vergleichsAnzahl + vertauschungsAnzahl));
     }
+    public static void quickSort(int[] array, int start, int end){
+
+        int i = start;
+        int j = end;
+        int middle = (j+i)/2;
+        int pivot = array[middle];
+        while(i<=j){
+            quickVergleiche++;
+            while(array[i] < pivot){
+                i++;
+                quickVergleiche++;
+            }
+            quickVergleiche++;
+            while(array[j] > pivot){
+                j--;
+                quickVergleiche++;
+            }
+            quickVergleiche++;
+            if(i<=j){
+                Help.swap(array,i,j);
+                quickVertausche++;
+                i++;
+                j--;
+            }
+            quickVergleiche++;
 
 
+        }
+        quickVergleiche++;
+        if (i<end){
+            quickSort(array,i,end);
+        }
+        if(start < j){
+            quickSort(array,start,j);
+        }
+    }
 }
