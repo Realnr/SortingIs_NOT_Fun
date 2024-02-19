@@ -4,6 +4,10 @@ public class Sortieren {
 
     public static int quickVertausche = 0;
     public static int quickVergleiche = 0;
+    public static int selectionVertausche = 0;
+    public static int selectionVergleiche = 0;
+    public static int bubbleVertausche = 0;
+    public static int bubbleVergleiche = 0;
 
     public static void main(String[] args) {
         int[] array=new int[4000];
