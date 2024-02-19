@@ -19,19 +19,21 @@ public class Sortieren {
             bubbleSort(array);//Array in der Konsole ausgeben lassen
             Help.generateArray(array);              //Array mit Zufallszahlen füllen
         }
+
         for (int i = 0; i < 10; i++) {
             selectionSort(array);//Array in der Konsole ausgeben lassen
             Help.generateArray(array);              //Array mit Zufallszahlen füllen
         }
+
+
+        System.out.println("quickSort");
         for (int i = 0; i < 10; i++) {
-            quickVertausche = 0;
-            quickVergleiche = 0;
-            System.out.println("quickSort");
             quickSort(array,0, array.length-1);//Array in der Konsole ausgeben lassen
-            System.out.println((quickVergleiche+quickVertausche));
             Help.generateArray(array);              //Array mit Zufallszahlen füllen
         }
+        System.out.println((quickVertausche+quickVergleiche)/10);
     }
+
 
     public static void insertionSort(int[] array){
         System.out.println("insertionSort");
